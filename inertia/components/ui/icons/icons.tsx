@@ -1,10 +1,10 @@
 import { HomeIcon } from '~/components/assets/icons'
 import { exhaustiveGuard } from '~/helpers/exhaustive_guard'
 
-const iconsName = ['home'] as const
+const iconName = ['home'] as const
 
 export interface IconProps {
-  name: (typeof iconsName)[number]
+  name: (typeof iconName)[number]
   size: 'sm' | 'md' | 'lg' | 'xl'
 }
 
