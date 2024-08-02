@@ -1,10 +1,14 @@
+import { IconProps, Icons } from '../icons/icons'
+
 interface NavLinkProps {
   size: 'sm' | 'md' | 'lg' | 'xl'
-  label: string | null
+  children: string
   disabled?: boolean
+  leftIcon?: IconProps['name']
+  rightIcon?: IconProps['name']
 }
 
-export function NavLink({ label, size, disabled = false }: NavLinkProps) {
+export function NavLink({ children, size, disabled = false, leftIcon, rightIcon }: NavLinkProps) {
   const customClass: { [key in NavLinkProps['size']]: string } = {
     sm: 'p-1.5 gap-x-1.5 text-3 line-height-4',
     md: 'p-2 gap-x-1.5 text-3.5 line-height-5',
@@ -19,9 +23,11 @@ export function NavLink({ label, size, disabled = false }: NavLinkProps) {
   return (
     <span
       aria-disabled={disabled}
-      className={`flex bg-opacity-0 rounded-1 bg-light ${colorClass} ${customClass[size]}`}
+      className={`flex items-center justify-center bg-opacity-0 rounded-1 bg-light ${colorClass} ${customClass[size]}`}
     >
-      {label}
+      {leftIcon !== undefined && <Icons size={size} name={leftIcon} />}
+      {children}
+      {rightIcon !== undefined && <Icons size={size} name={rightIcon} />}
     </span>
   )
 }
